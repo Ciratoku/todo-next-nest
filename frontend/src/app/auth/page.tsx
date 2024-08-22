@@ -7,17 +7,14 @@ function Auth() {
   const router = useRouter();
   const email = useInput("");
   const pwd = useInput("");
-  const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     const type = (e.target as HTMLElement).innerText;
     const body = { email: email.value, password: pwd.value };
-    const response = axios.post("", body);
-    if (type == "Login") {
-      alert("Login");
-    } else {
-      alert("Register");
-    }
-    //router.push("/profile/1");
+    axios
+      .post("http://localhost:3001/api/users", body)
+      .then((r) => console.log(r))
+      .catch((err) => console.log(err));
   };
   return (
     <div className="mt-40 flex justify-center">
