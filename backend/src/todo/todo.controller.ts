@@ -22,31 +22,31 @@ import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 @ApiTags("todos")
 @Controller("todos")
 export class TodoController {
-  constructor(private readonly TodoService: TodoService) {}
+  constructor(private readonly todoService: TodoService) {}
 
   @Post()
   @UseGuards(JwtAuthGuard)
   @UsePipes(new ValidationPipe())
   create(@Body() createTodoDto: CreateTodoDto, @Req() req) {
-    return this.TodoService.create(createTodoDto, +req.user.id);
+    return this.todoService.create(createTodoDto, +req.user.id);
   }
 
   @Get()
   @UseGuards(JwtAuthGuard)
   findAll(@Req() req) {
-    return this.TodoService.findAll(+req.user.id);
+    return this.todoService.findAll(+req.user.id);
   }
 
   @Patch(":id")
   @UseGuards(JwtAuthGuard, AuthorGuard)
   @UsePipes(new ValidationPipe())
   update(@Param("id") id: string, @Body() updateTodoDto: UpdateTodoDto) {
-    return this.TodoService.update(+id, updateTodoDto);
+    return this.todoService.update(+id, updateTodoDto);
   }
 
   @Delete(":id")
   @UseGuards(JwtAuthGuard, AuthorGuard)
   remove(@Param("id") id: string) {
-    return this.TodoService.remove(+id);
+    return this.todoService.remove(+id);
   }
 }
