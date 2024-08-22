@@ -1,5 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Dash } from "src/dash/entities/dash.entity";
+import { Todo } from "src/todo/entities/todo.entity";
 
 @Entity()
 export class User {
@@ -9,6 +9,6 @@ export class User {
   email: string;
   @Column()
   password: string;
-  @OneToMany(() => Dash, (dash) => dash.user, { onDelete: "CASCADE" })
-  dashes: Dash[];
+  @OneToMany(() => Todo, (todo) => todo.user, { onDelete: "CASCADE" })
+  todos: Todo[];
 }

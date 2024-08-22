@@ -2,7 +2,7 @@ import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { UserModule } from "./user/user.module";
-import { DashModule } from "./dash/dash.module";
+import { TodoModule } from "./todo/Todo.module";
 import { AuthModule } from "./auth/auth.module";
 import { AppController } from "./app.controller";
 
@@ -24,7 +24,7 @@ import { AppController } from "./app.controller";
       inject: [ConfigService],
     }),
     UserModule,
-    DashModule,
+    TodoModule,
     AuthModule,
   ],
   controllers: [AppController],

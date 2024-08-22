@@ -8,12 +8,12 @@ import {
 } from "typeorm";
 
 @Entity()
-export class Dash {
+export class Todo {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
   title: string;
-  @ManyToOne(() => User, (user) => user.dashes)
+  @ManyToOne(() => User, (user) => user.todos)
   @JoinColumn({ name: "user_id" })
   user: User;
 }

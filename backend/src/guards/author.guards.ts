@@ -1,17 +1,17 @@
 import { CanActivate, ExecutionContext, Injectable } from "@nestjs/common";
-import { DashService } from "src/dash/dash.service";
+import { TodoService } from "src/todo/Todo.service";
 
 @Injectable()
 export class AuthorGuard implements CanActivate {
-  constructor(private readonly dashService: DashService) {}
+  constructor(private readonly TodoService: TodoService) {}
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
     const { id } = request.params;
     const type = request.route.path.split("/")[2];
     let entity;
     switch (type) {
-      case "dashes":
-        entity = await this.dashService.findOne(id);
+      case "Todos":
+        entity = await this.TodoService.findOne(id);
         break;
     }
     const user = request.user;
