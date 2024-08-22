@@ -16,7 +16,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <header className="bg-gray-100 h-10 flex justify-end">
+          <button className="mr-5">Log out</button>
+        </header>
+        <div className="flex flex-col h-screen">{children}</div>
+      </body>
     </html>
   );
 }
