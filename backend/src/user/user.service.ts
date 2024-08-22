@@ -25,7 +25,7 @@ export class UserService {
       email: createUserDto.email,
       password: await argon2.hash(createUserDto.password),
     });
-    const token = this.jwtService.sign({ email: user.email });
+    const token = this.jwtService.sign({ id: user.id, email: user.email });
     return { user, token };
   }
 
