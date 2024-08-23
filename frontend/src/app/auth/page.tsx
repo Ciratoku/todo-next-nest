@@ -16,7 +16,7 @@ function Auth() {
       .post(`http://localhost:3001/api/${path}`, body)
       .then((r) => {
         window.sessionStorage.setItem("jwt-token", r.data.token);
-        router.push(`/profile/${r.data.id}`);
+        router.push(`/profile/`);
       })
       .catch((err) => {
         const response = JSON.parse(err.request.response);
