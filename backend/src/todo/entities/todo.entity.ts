@@ -13,6 +13,8 @@ export class Todo {
   id: number;
   @Column()
   title: string;
+  @Column()
+  createdAt: Date;
   @ManyToOne(() => User, (user) => user.todos)
   @JoinColumn({ name: "user_id" })
   user: User;
