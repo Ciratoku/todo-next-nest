@@ -1,6 +1,7 @@
 "use client";
 
 import axios from "axios";
+import Button from "@/components/Button";
 import { ITodo } from "@/types/types";
 import { useEffect, useState } from "react";
 
@@ -35,7 +36,9 @@ function Profile() {
           className="border-b-2 focus:border-gray-500 focus:outline-none"
           placeholder="type a todo..."
         />
-        <button className="text-2xl">+</button>
+        <button className="text-2xl transition-colors duration-500 hover:text-gray-300">
+          +
+        </button>
       </div>
       {isLoaded ? (
         <ul className="mx-4 mt-8 flex flex-col rounded-md bg-gray-200">
@@ -43,9 +46,9 @@ function Profile() {
             <div className="flex flex-row" key={todo.id}>
               <li className="ml-10">{todo.title}</li>
               <div className="ml-auto mr-10 flex flex-row gap-2">
-                <button>d</button>
-                <button>e</button>
-                <button>c</button>
+                <Button>d</Button>
+                <Button>e</Button>
+                <Button>c</Button>
               </div>
             </div>
           ))}
