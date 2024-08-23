@@ -5,7 +5,4 @@ export class CreateTodoDto {
   @ApiProperty()
   @IsNotEmpty()
   title: string;
-  @ApiProperty()
-  @IsNotEmpty()
-  desc: string;
 }

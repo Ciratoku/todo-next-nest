@@ -13,7 +13,6 @@ export class TodoService {
   async create(createTodoDto: CreateTodoDto, id: number) {
     const newTodo = {
       title: createTodoDto.title,
-      desc: createTodoDto.desc,
       user: { id },
     };
     return await this.todoRepository.save(newTodo);
