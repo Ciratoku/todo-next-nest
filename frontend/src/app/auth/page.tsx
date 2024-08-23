@@ -11,20 +11,34 @@ function Auth() {
     e.preventDefault();
     const type = (e.target as HTMLElement).innerText;
     const body = { email: email.value, password: pwd.value };
+    const path = type == "Login" ? "auth/login" : "users";
     axios
-      .post("http://localhost:3001/api/users", body)
-      .then((r) => console.log(r))
-      .catch((err) => console.log(err));
+      .post(`http://localhost:3001/api/${path}`, body)
+      .then((r) => {
+        window.sessionStorage.setItem("jwt-token", r.data.token);
+        router.push(`/profile/${r.data.id}`);
+      })
+      .catch((err) => {
+        const response = JSON.parse(err.request.response);
+        alert(response.message);
+      });
   };
   return (
     <div className="mt-40 flex justify-center">
       <form className="flex flex-col gap-4">
-        <input type="text" className="input" placeholder="email" {...email} />
+        <input
+          type="text"
+          className="input"
+          placeholder="email"
+          {...email}
+          required
+        />
         <input
           type="password"
           className="input"
           placeholder="password"
           {...pwd}
+          required
         />
         <div className="flex justify-between">
           <button className="btn" onClick={(event) => handleSubmit(event)}>
