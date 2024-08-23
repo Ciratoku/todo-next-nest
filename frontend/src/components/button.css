@@ -1,0 +1,6 @@
+@tailwind components;
+@layer components {
+  .btn-action {
+    @apply cursor-pointer transition-colors duration-300 hover:bg-white;
+  }
+}
