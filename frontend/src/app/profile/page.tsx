@@ -6,6 +6,9 @@ import { useEffect, useState } from "react";
 
 // TODO: check if user is auth-ed and if it's not his profile check for shared token (or smth)
 function Profile() {
+  const instance = axios.create({
+    baseURL: "http://localhost:3001/api",
+  });
   const config = {
     headers: {
       Authorization: `Bearer ${sessionStorage.getItem("jwt-token")}`,
@@ -14,8 +17,8 @@ function Profile() {
   const [todos, setTodos] = useState<ITodo[]>([]);
   const [isLoaded, setIsLoaded] = useState<Boolean>(false);
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/api/todos", config)
+    instance
+      .get("/todos", config)
       .then((r) => {
         setIsLoaded(true);
         setTodos(r.data);
@@ -35,7 +38,7 @@ function Profile() {
         <button className="text-2xl">+</button>
       </div>
       {isLoaded ? (
-        <ul className="mt-8 flex flex-col">
+        <ul className="mx-4 mt-8 flex flex-col rounded-md bg-gray-200">
           {todos.map((todo) => (
             <div className="flex flex-row" key={todo.id}>
               <li className="ml-10">{todo.title}</li>
